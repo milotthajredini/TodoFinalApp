@@ -1,0 +1,14 @@
+.icons {
+  display: flex;
+  justify-content: end;
+  height: auto;
+}
+.trash {
+  color: rgb(187, 0, 0);
+  margin-top: 4px;
+  margin-left: 5px;
+}
+
+.card-header {
+  background-color: #ebecf0 !important;
+}

@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&family=Poppins&display=swap");
+h6 {
+  font-family: "Merriweather Sans", sans-serif;
+  color: #091e42;
+}
+.icons {
+  display: flex;
+  justify-content: end;
+  height: auto;
+}
+.trash {
+  color: rgb(187, 0, 0);
+  margin-top: 4px;
+  margin-left: 5px;
+}
+.card-header {
+  background-color: #ebecf0 !important;
+}
+.card {
+  border: 2px solid rgba(0, 0, 0, 0.125) !important;
+}
