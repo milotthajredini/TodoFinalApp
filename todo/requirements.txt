@@ -1,0 +1,4 @@
+virtualenv
+Django
+djangorestframework
+django-cors-headers
