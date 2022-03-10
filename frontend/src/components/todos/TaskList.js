@@ -4,7 +4,7 @@ import "../../assets/css/TaskList.css";
 import { Button } from "react-bootstrap";
 import { Outlet, Link } from "react-router-dom";
 
-function TaskList() {
+function TaskList(props) {
   return (
     <div className="container">
       <h1 className="textHome">Task List</h1>

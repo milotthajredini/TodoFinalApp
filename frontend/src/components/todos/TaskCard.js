@@ -17,22 +17,22 @@ function TaskCard(props) {
   useEffect(() => {
     props?.fetchTasks();
     props?.fetchUsers();
-  }, [props.fetchTasks, props.fetchUsers]);
+  }, [props?.fetchTasks, props?.fetchUsers]);
 
   const getTaskData = (taskId) => {
     props?.fetchTask(taskId);
   };
 
   const filterByTask = props.tasks
-    .filter((task) => task.status == filter)
+    .filter((task) => task.status === filter)
     .map((filterTask) => {
       return (
         <div key={filterTask.id}>
           <Card
             border={
-              filter == "TODO"
+              filter === "TODO"
                 ? colors.TODO
-                : filter == "IN PROGRESS"
+                : filter === "IN PROGRESS"
                 ? colors.INPROGRESS
                 : colors.DONE
             }
@@ -121,7 +121,7 @@ function TaskCard(props) {
   return (
     <div className="container">
       <div className="">
-        <h6>Filter By:</h6>
+        <h6>Filter by Status:</h6>
       </div>
       <div className="selectFilter">
         <Form.Select
@@ -129,7 +129,7 @@ function TaskCard(props) {
           onChange={(event) => setFilter(event.target.value)}
         >
           <option key="1" value="">
-            Select a Status
+            All
           </option>
           <option key="2" value="TODO">
             TODO
@@ -143,7 +143,7 @@ function TaskCard(props) {
         </Form.Select>
       </div>
       <div className="taskContainer">
-        {filter == "" ? taskItem : filterByTask}
+        {filter === "" ? taskItem : filterByTask}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { createTask } from "../actions/taskAction";
 import { fetchUsers } from "../actions/userAction";
 import { useNavigate } from "react-router";
 import React, { useState, useEffect } from "react";
+import { FETCH_TASKS } from "../actions/types";
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
@@ -23,7 +24,6 @@ function CreateTask(props) {
     setTitle(props?.currentTask?.title);
     setDescription(props?.currentTask?.description);
     setAssigned(props?.currentTask?.assigned);
-
     props?.fetchUsers();
   }, [props?.currentTask, props?.fetchUsers]);
 
@@ -38,7 +38,7 @@ function CreateTask(props) {
     };
 
     props.createTask(task);
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   const userItem = props.users.map((user) => (
