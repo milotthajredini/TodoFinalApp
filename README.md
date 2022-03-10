@@ -10,22 +10,30 @@ Then Start the Front End
 
 //Back End
 
-    Must have Python installed on you computer
+Must have Python installed on you computer
 
-    First run 
+First run
 
-        pip install virtualenv 
+        pip install virtualenv
 
-    Then run
+Then run
 
-        python3 -m venv env 
+        python -m venv env
 
-    Then run
+Activate your virtual env
 
-        pip3 install -r requirements.txt
+    For windows users:
+        env\Scripts\activate
 
-    After this run 
+    For mac users :
+    source env/bin/activate
 
-        python3 manage.py runserver 
+Then run
 
-    And the server should start
+        pip install -r requirements.txt
+
+After this run
+
+        python manage.py runserver
+
+And the server should start
