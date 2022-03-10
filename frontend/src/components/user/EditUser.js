@@ -61,7 +61,7 @@ function EditUser(props) {
                 <Button variant="secondary">Close</Button>
               </Link>
               <Form.Group>
-                <Button variant="primary" type="submit" onClick={handleClose}>
+                <Button variant="primary" type="submit">
                   Add
                 </Button>
               </Form.Group>

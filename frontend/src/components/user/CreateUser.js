@@ -21,6 +21,7 @@ function CreateUser(props) {
       email: email,
     };
     props.createUser(user);
+    navigate("/user-list");
   }
   return (
     <div>
