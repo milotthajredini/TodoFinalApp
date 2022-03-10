@@ -9,11 +9,15 @@ Then Start the Front End
     npm start
 
 //Back End
-Go to todo Folder and into the Termial run
-pip install virtualenv
-then
-For mac
-source env/bin/activate
+    Must have Python installed on you computer
+    First run 
+    pip install virtualenv 
+    Then run
+    python3 -m venv env 
+    Then run
+    pip3 install -r requirements.txt
 
-        For Windows
-        virtualenv venv\Scripts\activate
+    After this run 
+    python3 manage.py runserver 
+
+    And the server should start
