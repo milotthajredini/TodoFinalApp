@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { editUser } from "../../actions/userAction";
+import { editUser, fetchUsers } from "../../actions/userAction";
 import { PropTypes } from "prop-types";
 import { useNavigate } from "react-router";
 
@@ -27,8 +27,10 @@ function EditUser(props) {
       name: name,
       email: email,
     };
-    props.editUser(props.currentUser?.id, user);
-    navigate("/user-list");
+    props.editUser(props.currentUser?.id, user).then(() => {
+      props.fetchUsers();
+      navigate("/user-list");
+    });
   }
   return (
     <div>
@@ -75,9 +77,10 @@ function EditUser(props) {
 
 EditUser.propTypes = {
   editUser: PropTypes.func.isRequired,
+  fetchUsers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentUser: state.users.currentUser,
 });
-export default connect(mapStateToProps, { editUser })(EditUser);
+export default connect(mapStateToProps, { editUser, fetchUsers })(EditUser);

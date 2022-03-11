@@ -3,6 +3,8 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { createUser } from "../../actions/userAction";
 import { useNavigate } from "react-router";
+import PropTypes from "prop-types";
+import { fetchUsers } from "../../actions/userAction";
 
 import { Link } from "react-router-dom";
 function CreateUser(props) {
@@ -20,8 +22,10 @@ function CreateUser(props) {
       name: name,
       email: email,
     };
-    props.createUser(user);
-    navigate("/user-list");
+    props.createUser(user).then(() => {
+      props.fetchUsers();
+      navigate("/user-list");
+    });
   }
   return (
     <div>
@@ -65,5 +69,8 @@ function CreateUser(props) {
     </div>
   );
 }
+CreateUser.propsTypes = {
+  fetchUsers: PropTypes.func.isRequired,
+};
 
-export default connect(null, { createUser })(CreateUser);
+export default connect(null, { createUser, fetchUsers })(CreateUser);

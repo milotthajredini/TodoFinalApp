@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { editTask } from "../actions/taskAction";
+import { editTask, fetchTasks } from "../actions/taskAction";
 import { PropTypes } from "prop-types";
 import { useNavigate } from "react-router";
 
@@ -31,8 +31,10 @@ function EditTask(props) {
       status: status,
     };
 
-    props.editTask(props.currentTask?.id, task);
-    navigate("/");
+    props.editTask(props.currentTask?.id, task).then(() => {
+      props.fetchTasks();
+      navigate("/");
+    });
   }
 
   return (
@@ -119,9 +121,10 @@ function EditTask(props) {
 
 EditTask.propTypes = {
   editTask: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentTask: state.tasks.currentTask,
 });
-export default connect(mapStateToProps, { editTask })(EditTask);
+export default connect(mapStateToProps, { editTask, fetchTasks })(EditTask);

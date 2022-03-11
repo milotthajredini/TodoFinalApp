@@ -2,11 +2,10 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createTask } from "../actions/taskAction";
+import { createTask, fetchTasks } from "../actions/taskAction";
 import { fetchUsers } from "../actions/userAction";
 import { useNavigate } from "react-router";
 import React, { useState, useEffect } from "react";
-import { FETCH_TASKS } from "../actions/types";
 
 function CreateTask(props) {
   const [title, setTitle] = useState("");
@@ -25,7 +24,7 @@ function CreateTask(props) {
     setDescription(props?.currentTask?.description);
     setAssigned(props?.currentTask?.assigned);
     props?.fetchUsers();
-  }, [props?.currentTask, props?.fetchUsers]);
+  }, [props?.currentTask]);
 
   const submitTask = (e) => {
     e.preventDefault();
@@ -37,8 +36,10 @@ function CreateTask(props) {
       status: status,
     };
 
-    props.createTask(task);
-    navigate("/", { replace: true });
+    props.createTask(task).then(() => {
+      props.fetchTasks();
+      navigate("/");
+    });
   };
 
   const userItem = props.users.map((user) => (
@@ -135,8 +136,11 @@ function CreateTask(props) {
 CreateTask.propTypes = {
   createTask: PropTypes.func.isRequired,
   fetchUsers: PropTypes.func.isRequired,
+  fetchTasks: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   users: state.users.items,
 });
-export default connect(mapStateToProps, { createTask, fetchUsers })(CreateTask);
+export default connect(mapStateToProps, { createTask, fetchUsers, fetchTasks })(
+  CreateTask
+);

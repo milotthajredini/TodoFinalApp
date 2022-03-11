@@ -9,7 +9,7 @@ import "../../assets/css/UserCard.css";
 function UserCard(props) {
   useEffect(() => {
     props?.fetchUsers();
-  }, [props?.fetchUsers]);
+  }, []);
   const getUserData = (userId) => {
     props?.fetchUser(userId);
   };
